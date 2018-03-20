@@ -94,31 +94,33 @@ a.popup_link:hover {
 <body>
 <script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){  
-		     var cururl = "http://127.0.0.1:8080/prop/testappmap?planid=" ;
+	$(document).ready(function()
+			{  
+		     var ipStr = "http://10.206.30.45:8080";
+		     var cururl = ipStr + "/prop/testappmap?planid=";
 			 $.ajax({  
 						type:"GET",  
-						url: "http://127.0.0.1:8080/prop/testplanlist?planid=1",  
+						url: ipStr + "/prop/testplanlist?planid=1",  
 						dataType:"json",  
 						<!--global:false,-->   
 						success: function(data){
 						                            $("tr[class='errorClass'],tr[class='failClass'],tr[class='passClass']").remove();	
-                                                    $("tr[id^='ft'],tr[id^='pt']").remove();	
-													$("#total_row").remove();
-						                            listdata = data.listplan;
-													$("#select_plan > option").remove();
-						                            $.each(listdata,function(index,item){
-													                                        var itemstr =  "<option value=\"" + item.id + "\">" + item.plantime + "</option>";
-													                                        $("#select_plan").append(itemstr);
-																						})
-										            $("#select_plan").append("<option value='' selected>请选择</option>") ;
+                                        $("tr[id^='ft'],tr[id^='pt']").remove();	
+																				$("#total_row").remove();
+													                            listdata = data.listplan;
+																				$("#select_plan > option").remove();
+													              $.each(listdata,function(index,item){
+																				                                        var itemstr =  "<option value=\"" + item.id + "\">" + item.plantime + "</option>";
+																				                                        $("#select_plan").append(itemstr);
+																													                   });
+																	       $("#select_plan").append("<option value='' selected>请选择</option>") ;
 						                       }
 				    });
 			$("#select_plan").bind("change",selectfun);
-            function selectfun(event)
+      function selectfun(event)
 			{
 			   lid = $(this).val() ;
-				$.ajax({  
+				 $.ajax({  
 					type:"GET",  
 					url: cururl + lid,  
 					dataType:"json",  
@@ -314,7 +316,6 @@ function showOutput(id, name) {
 <p class='attribute'><strong>Start Time:</strong> 2018-03-09 16:29:19</p>
 <p class='attribute'><strong>Duration:</strong> 0:00:48.189903</p>
 <p class='attribute'><strong>Status:</strong> Pass 13 Failure 8 Error 66</p>
-
 <p class='description'>用例测试情况</p>
 </div>
 
