@@ -1,0 +1,50 @@
+﻿{"user_avatar":"http://www.gravatar.com/avatar/7eabc787d4c6a551757c23f484a3fe7c?s=80&d=identicon",
+"user_email":"li.taojun@bestv.com.cn",
+"total_commits_count":1,
+"before":"cff205eac30b58862b35d204c19d1624a3beab88",
+"user_name":"litaojun",
+checkout_sha":"5bf4fe79eb9fa67d9523a9bf741a7a93230ead3d",
+"project":
+         {"name":"frame",
+         "description":"",
+         "web_url":"http://10.205.1.4:9999/litaojun/frame",
+         "git_ssh_url":"git@10.205.1.4:litaojun/frame.git",
+         "git_http_url":"http://10.205.1.4:9999/litaojun/frame.git",
+         "namespace":"litaojun",
+         "visibility_level":20,
+         "path_with_namespace":"litaojun/frame",
+         "default_branch":"master",
+         "homepage":"http://10.205.1.4:9999/litaojun/frame",
+         "url":"git@10.205.1.4:litaojun/frame.git",
+         "ssh_url":"git@10.205.1.4:litaojun/frame.git",
+         "http_url":"http://10.205.1.4:9999/litaojun/frame.git"
+         }
+         ,
+"repository":
+         {"name":"frame",
+          "url":"git@10.205.1.4:litaojun/frame.git",
+          "description":"",
+          "homepage":"http://10.205.1.4:9999/litaojun/frame",
+          "git_http_url":"http://10.205.1.4:9999/litaojun/frame.git",
+          "git_ssh_url":"git@10.205.1.4:litaojun/frame.git",
+          "visibility_level":20
+          },
+"object_kind":"push",
+"ref":"refs/heads/master",
+"user_id":2,
+"project_id":1,
+"event_name":"push",
+"commits":
+            [
+                     {"id":"5bf4fe79eb9fa67d9523a9bf741a7a93230ead3d",
+                       "message":"ffsss","timestamp":"2016-11-02T10:06:43+08:00",
+                       "url":"http://10.205.1.4:9999/litaojun/frame/commit/5bf4fe79eb9fa67d9523a9bf741a7a93230ead3d",
+                       "author":
+                              {"name":"li.taojun",
+                               "email":"li.taojun@LITAOJUN-NB.oriental-pearl.cn"
+                               },
+                       "added":[],
+                       "modified":["src/main/java/com/frame/test/ifspdl/CaseInput.java"],
+                       "removed":[]}
+              ],
+"after":"5bf4fe79eb9fa67d9523a9bf741a7a93230ead3d"}
