@@ -113,11 +113,8 @@ a.popup_link:hover {
 																				var sign = '';
 													              $.each(listdata,function(index,item){
 																				                                        var itemstr =  "<option value=\"" + item.id + "\">" + item.plantime + "</option>";
-																				                                        $("#select_plan").append(itemstr);
-																				                                        if(index==0)
-																				                                        {
-																				                                        	sign = item.id
-																				                                        }
+																				                                        $("#select_plan").prepend(itemstr);
+																				                                        sign = item.id
 																													                   });
 																	       $("#select_plan").append("<option value='' selected>请选择</option>") ;
 																	       $("#select_plan").find("option[value='"+sign+"']").attr("selected",true); 
