@@ -165,7 +165,7 @@ a.popup_link:hover {
 			{
 					projectname = $("#select_project").find("option:selected").text();  //获取select的选择的文本,获取工程名称
 					//projectname = $("#select_project").val();   //获取select的value值
-					alert("开始执行" + projectname + "项目的自动化测试用例，最新的测试报告请稍后刷新页面");
+					alert("开始执行" + projectname + "项目的自动化测试用例，用例执行需要一段时间，最新的测试报告请稍后刷新页面");
 					selectPlanByProName(projectname);
 					 $.ajax({
 											type:"GET",  
