@@ -2,7 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>自动化测试平台</title>
+<style type="text/css" media="screen">
+.title{
+        text-align:center;
+    }
+</style>
+    <title class='title'>自动化测试平台</title>
     <meta name="generator" content="HTMLTestRunner 0.8.2"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     
@@ -12,9 +17,11 @@ table       { font-size: 100%; }
 pre         { }
 
 /* -- heading ---------------------------------------------------------------------- */
+
 h1 {
-	font-size: 16pt;
+	font-size: 19pt;
 	color: gray;
+	text-align:center;
 }
 .heading {
     margin-top: 0ex;
@@ -27,8 +34,8 @@ h1 {
 }
 
 .heading .description {
-    margin-top: 4ex;
-    margin-bottom: 6ex;
+    margin-top: 2ex;
+    margin-bottom: 3ex;
 }
 
 /* -- css div popup ------------------------------------------------------------------------ */
@@ -60,9 +67,10 @@ a.popup_link:hover {
     margin-bottom: 1ex;
 }
 #result_table {
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
     border: 1px solid #777;
+    text-align:center;
 }
 #header_row {
     font-weight: bold;
@@ -98,32 +106,45 @@ a.popup_link:hover {
 			{  
 		     var ipStr = "http://10.206.30.45:8080";
 		     var cururl = ipStr + "/prop/testappmap?planid=";
-		     
-			 $.ajax({  
-						type:"GET",  
-						url: ipStr + "/prop/testplanlist?projectname=Steam测试报告",  
-						dataType:"json",  
-						<!--global:false,-->   
-						success: function(data){
-						                            $("tr[class='errorClass'],tr[class='failClass'],tr[class='passClass']").remove();	
-                                        $("tr[id^='ft'],tr[id^='pt']").remove();	
-																				$("#total_row").remove();
-													                            listdata = data.listplan;
-																				$("#select_plan > option").remove();
-																				var sign = '';
-													              $.each(listdata,function(index,item){
-																				                                        var itemstr =  "<option value=\"" + item.id + "\">" + item.plantime + "</option>";
-																				                                        $("#select_plan").prepend(itemstr);
-																				                                        sign = item.id
-																													                   });
-																	       $("#select_plan").append("<option value='' selected>请选择</option>") ;
-																	       $("#select_plan").find("option[value='"+sign+"']").attr("selected",true);   //选中第一行数据
-																	       $('#select_plan').trigger('change');//触发改变事件  
-						                       }
-			                            
-				    });
-			 $("#select_plan").bind("change",selectfun);
-			
+		     $("#planTest").bind("click",autoTestFun);
+				 $("#select_plan").bind("change",selectfun);
+         $("tr[class='errorClass'],tr[class='failClass'],tr[class='passClass']").remove();	
+         $("tr[id^='ft'],tr[id^='pt']").remove();	
+				 $("#total_row").remove();
+				 $("#select_plan > option").remove();
+		     function selectPlanByProName(proname)
+		     {
+						   $.ajax({
+												type:"GET",  
+												url: ipStr + "/prop/testplanlist?projectname=" + proname,  
+												dataType:"json",  
+												<!--global:false,-->   
+												success: function(data){
+									                            $("tr[class='errorClass'],tr[class='failClass'],tr[class='passClass']").remove();	
+			                                        $("tr[id^='ft'],tr[id^='pt']").remove();	
+																							$("#total_row").remove();
+																              listdata = data.listplan;
+																							$("#select_plan > option").remove();
+																							var sign = '';
+																              $.each(listdata,function(index,item){
+																							                                        var itemstr =  "<option value=\"" + item.id + "\">" + item.plantime + "</option>";
+																							                                        $("#select_plan").prepend(itemstr);
+																							                                        sign = item.id
+																																                   });
+																				       $("#select_plan").append("<option value='' selected>请选择</option>") ;
+																				       $("#select_plan").find("option[value='"+sign+"']").attr("selected",true);   //选中第一行数据
+																				       $('#select_plan').trigger('change');//触发改变事件  
+									                       }
+						                            
+							    });
+		   }
+			function autoTestFun()
+			{
+					projectname = $("#select_project").find("option:selected").text();  //获取select的选择的文本
+					//projectname = $("#select_project").val();   //获取select的value值
+					alert(projectname);
+					selectPlanByProName(projectname);
+			}
       function selectfun(event)
 			{
 			   lid = $(this).val() ;
@@ -210,129 +231,43 @@ a.popup_link:hover {
 								   });
 		             }
                  });
-
-						
-
 </script>
-<script language="javascript" type="text/javascript"><!--
-output_list = Array();
-
-/* level - 0:Summary; 1:Failed; 2:All */
-function showCase(level) 
-{
-    trs = document.getElementsByTagName("tr");
-    for (var i = 0; i < trs.length; i++) {
-        tr = trs[i];
-        id = tr.id;
-        if (id.substr(0,2) == 'ft') {
-            if (level < 1) {
-                tr.className = 'hiddenRow';
-            }
-            else {
-                tr.className = '';
-            }
-        }
-        if (id.substr(0,2) == 'pt') {
-            if (level > 1) {
-                tr.className = '';
-            }
-            else {
-                tr.className = 'hiddenRow';
-            }
-        }
-    }
-}
-
-
-function showClassDetail(cid, count) 
-{
-    var id_list = Array(count);
-    var toHide = 1;
-    for (var i = 0; i < count; i++) 
-	{
-        tid0 = 't' + cid.substr(1) + '.' + (i+1);
-        tid = 'f' + tid0;
-        tr = document.getElementById(tid);
-        if (!tr) {
-            tid = 'p' + tid0;
-            tr = document.getElementById(tid);
-        }
-        id_list[i] = tid;
-        if (tr.className) {
-            toHide = 0;
-        }
-    }
-    for (var i = 0; i < count; i++) 
-	{
-        tid = id_list[i];
-        if (toHide) 
-		{
-            document.getElementById('div_'+tid).style.display = 'none'
-            document.getElementById(tid).className = 'hiddenRow';
-        }
-        else {
-                   document.getElementById(tid).className = '';
-             }
-    }
-}
-
-
-function showTestDetail(div_id)
-{
-    var details_div = document.getElementById(div_id)
-    var displayState = details_div.style.display
-    // alert(displayState)
-    if (displayState != 'block' ) 
-	{
-        displayState = 'block'
-        details_div.style.display = 'block'
-    }
-    else 
-	{
-        details_div.style.display = 'none'
-    }
-}
-
-
-function html_escape(s) 
-{
-    s = s.replace(/&/g,'&amp;');
-    s = s.replace(/</g,'&lt;');
-    s = s.replace(/>/g,'&gt;');
-    return s;
-}
-
-/* obsoleted by detail in <div>
-function showOutput(id, name) {
-    var w = window.open("", //url
-                    name,
-                    "resizable,scrollbars,status,width=800,height=450");
-    d = w.document;
-    d.write("<pre>");
-    d.write(html_escape(output_list[id]));
-    d.write("\n");
-    d.write("<a href='javascript:window.close()'>close</a>\n");
-    d.write("</pre>\n");
-    d.close();
-}
-*/
---></script>
+<script language="javascript" type="text/javascript">
+</script>
 
 <div class='heading'>
-<h1>UOP-小红巢测试报告</h1>
-<p class='attribute'><strong>Start Time:</strong> 2018-03-09 16:29:19</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:48.189903</p>
-<p class='attribute'><strong>Status:</strong> Pass 13 Failure 8 Error 66</p>
-<p class='description'>用例测试情况</p>
+<h1>自动化测试平台</h1>
+<!--<p class='attribute'><strong>Start Time:</strong> 2018-03-09 16:29:19</p>  -->
+<!--<p class='attribute'><strong>Duration:</strong> 0:00:48.189903</p>  -->
+<!--<p class='attribute'><strong>Status:</strong> Pass 13 Failure 8 Error 66</p> -->
+<!-- <p class='description'>用例测试情况</p>  -->
 </div>
-
-
-
-<p id='show_detail_line'>Show
-<a href='javascript:showCase(0)'>Summary</a>
-<a href='javascript:showCase(1)'>Failed</a>
-<a href='javascript:showCase(2)'>All</a>
-</p>
+<table id="tablepro" >
+  <tr>
+    <td>请选择项目  ：  </td>
+    <td>
+        <p >
+						<select id='select_project'>
+							  <option value="1">steam亲子教育</option>
+							  <option value="2">uop小红巢</option>
+							  <option value='' selected>请选择</option> 
+						</select>
+         </p>
+     </td>
+     <td><button id="planTest" type="button">接口自动化测试执行</button></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td>
+        <p id='show_detail_line'>Show
+						<a href='javascript:showCase(0)'>Summary</a>
+						<a href='javascript:showCase(1)'>Failed</a>
+						<a href='javascript:showCase(2)'>All</a>
+				</p>
+		</td>
+  </tr>
+</table>
 <table id='result_table'>
 <colgroup>
 <col align='left' />
