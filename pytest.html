@@ -163,6 +163,7 @@ a.popup_link:hover {
 		  //根据选择的项目名称执行自动化测试
 			function autoTestFun()
 			{
+				  prompt();
 					projectname = $("#select_project").find("option:selected").text();  //获取select的选择的文本,获取工程名称
 					//projectname = $("#select_project").val();   //获取select的value值
 					alert(projectname);
