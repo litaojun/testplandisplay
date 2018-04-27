@@ -45,9 +45,7 @@ a.popup_link {
 a.popup_link:hover {
     color: red;
 }
-.comment{
-   color: red;
- }
+
 
 .popup_window {
     display: none;
@@ -105,6 +103,9 @@ border-bottom-width: 1px;//底部边框宽度
 border-bottom-style: solid;//底部边框样式为实线
 border-bottom-color: #00008B;//底部边框颜色
 }
+.comment{
+   color: red;
+ }
 /* -- ending ---------------------------------------------------------------------- */
 #ending {
 }
@@ -213,9 +214,8 @@ border-bottom-color: #00008B;//底部边框颜色
 				  $("#statusPlan").html("自动化用例执行中，请等待。。");
 					projectname = $("#select_project").find("option:selected").text();  //获取select的选择的文本,获取工程名称
 					//projectname = $("#select_project").val();   //获取select的value值
-					alert("开始执行" + projectname + "项目的自动化测试用例，用例执行需要一段时间，最新的测试报告请稍后刷新页面");
+					//alert("开始执行" + projectname + "项目的自动化测试用例，用例执行需要一段时间，最新的测试报告请稍后刷新页面");
 					requrl = ipStr + "/prop/runtestplan?projectname=" + projectname + "&startime=" + time2;
-					alert(requrl);
 					selectPlanByProName(projectname);
 					 $.ajax({
 											type:"GET" ,  
@@ -432,8 +432,8 @@ function showOutput(id, name) {
 <table id="tablepro" >
   <tr class = "comment">
       <td>选择项目点击</td>
-      <td>'接口自动化测试执行'</td>
-      <td>运行结束后自动显示结果</td>
+      <td>'自动化测试执行'</td>
+      <td>运行结束自动显示报告</td>
   </tr>
   <tr>
     <td>请选择项目  ：  </td>
@@ -450,13 +450,13 @@ function showOutput(id, name) {
   </tr>
 </table>
 <table>
-    <tr class="t1">
+    <tr >
     <td>
-        <p id="timePlan" class=t1>---------</p>
+        <p id="timePlan">---------</p>
     </td>
-    <td   class="comment">目前状态</td>
+    <td   class="t1">目前状态</td>
     <td>
-         <p id= "statusPlan" class=t1>----</p>
+         <p id= "statusPlan" class="comment">----</p>
      </td>
   </tr>
 </table>
