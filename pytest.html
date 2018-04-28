@@ -4,18 +4,17 @@
 <head>
 <style type="text/css" media="screen">
 .title{
-        text-align:center;
-    }
+	        text-align:center;
+	    }
 </style>
 <!-- <link href=../js/app.04cc3cf13879ea21c0d0d0ccbb5b79e7.css rel=stylesheet> -->
-    <title class='title'>自动化测试平台</title>
-    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    
+<title class='title'>自动化测试平台</title>
+<meta name="generator" content="HTMLTestRunner 0.8.2"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 <style type="text/css" media="screen">
-body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+body        { font-family: verdana, arial, helveverdanaca, sans-serif; font-size: 80%; }
 table       { font-size: 100%; }
-pre         { }
+pre         {   }
 
 /* -- heading ---------------------------------------------------------------------- */
 
@@ -24,7 +23,8 @@ h1 {
 	color: gray;
 	text-align:center;
 }
-.heading {
+
+/*.heading {
     margin-top: 0ex;
     margin-bottom: 1ex;
 }
@@ -37,7 +37,7 @@ h1 {
 .heading .description {
     margin-top: 2ex;
     margin-bottom: 3ex;
-}
+}*/
 
 /* -- css div popup ------------------------------------------------------------------------ */
 a.popup_link {
@@ -167,6 +167,7 @@ border-bottom-color: #00008B;//底部边框颜色
          $("tr[id^='ft'],tr[id^='pt']").remove();	
 				 $("#total_row").remove();
 				 $("#select_plan > option").remove();
+				 $("#select_plan").prepend("<option value='' selected>请选择</option>") ;
 				 var i = 1;
 				 var sign = 1;
 				 //定时查询用例执行状态 
@@ -201,8 +202,6 @@ border-bottom-color: #00008B;//底部边框颜色
 															                        	    $("#timePlan").html(protime);
 															                        	    selectPlanByProName("steam亲子教育")
 															                        	 }
-															                         
-															                        	
 														                       }
 													});
 				    	 }
@@ -232,7 +231,7 @@ border-bottom-color: #00008B;//底部边框颜色
 																							                                        $("#select_plan").prepend(itemstr);
 																							                                        sign = item.id
 																																                   });
-																				       $("#select_plan").append("<option value='' selected>请选择</option>") ;
+																				       $("#select_plan").prepend("<option value='' selected>请选择</option>") ;
 																				       $("#select_plan").find("option[value='"+sign+"']").attr("selected",true);   //选中第一行数据
 																				       $('#select_plan').trigger('change');//触发改变事件  
 									                       }
@@ -324,8 +323,8 @@ border-bottom-color: #00008B;//底部边框颜色
 																																			             "<td colspan='5' align='center'>" + 
 																																			             "<a class=\"popup_link\" onfocus='this.blur();' href=\"javascript:showTestDetail('div_"+ trid + index + "." + (i+1) + "')\" >" + 
 																																				         signdetail + "</a>" + 
-																																							"<div id='div_"+trid+ index + "." + (i+1) +"' class=\"popup_window\">" + 
-																																								"<div style='text-align: right; color:red;cursor:pointer'>" + 
+																																							      "<div id='div_"+trid+ index + "." + (i+1) +"' class=\"popup_window\">" + 
+																																								   "<div style='text-align: right; color:red;cursor:pointer'>" + 
 																																								"<a onfocus='this.blur();' onclick=\"document.getElementById('div_"+trid+ index + "." + (i+1) +"').style.display = 'none' \" >" + 
 																																								   "[x]</a>" +
 																																								"</div>" + 
@@ -468,7 +467,7 @@ function showOutput(id, name) {
 <table id="" >
   <tr class = "comment">
       <td>选择项目点击</td>
-      <td>'自动化测试执行'</td>
+      <td>'自动化用例执行'</td>
       <td>运行结束自动显示报告</td>
   </tr>
 </table>
@@ -484,7 +483,7 @@ function showOutput(id, name) {
 						</select>
          </p>
      </td>
-     <td><p ><button id="planTest" type="button" class="login-button">自动化测试执行</button></p></td>
+     <td><p ><button id="planTest" type="button" class="login-button">自动化用例执行</button></p></td>
   </tr>
 </table>
 <table >
@@ -498,6 +497,7 @@ function showOutput(id, name) {
      </td>
   </tr>
 </table> 
+
 <table>
   <tr>
     <td>
@@ -508,7 +508,7 @@ function showOutput(id, name) {
 				</p>
 		</td>
   </tr>
-</table>
+</table> 
 <table id='result_table'>
 <colgroup>
 <col align='left' />
