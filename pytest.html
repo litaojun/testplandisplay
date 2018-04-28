@@ -164,8 +164,8 @@ a.popup_link:hover {
 <script type="text/javascript" src="./js/jquery.timers.js"></script>
 <script type="text/javascript" src="./js/timefun.js"></script>
 <script type="text/javascript">
-	$(document).ready(function()
-			{  
+$(document).ready(function()
+{
 		     var ipStr = "http://10.206.30.220:8080";
 		     var testReporturl = ipStr + "/prop/testappmap?planid=";   //#根据选择的执行计划获取对应报告
 		     var runTesturl = ipStr + "/prop/runtestplan?projectname=";  //根据项目名称执行自动化测试  
@@ -186,6 +186,14 @@ a.popup_link:hover {
 				 var stattime;
 				 var runfentime = 0;
 				 var runmiaotime = 0;
+				 function clearTestStatusAndTime()
+				 {
+					 $("#timePlan").html("-------");
+					 $("#statusPlan").html("----");
+					 $("#fentime").html("-");
+					 $("#miaotime").html("-");
+				 }
+				 
 				 //定时查询用例执行状态 
 				 function timeTest()
 				 {
@@ -235,6 +243,7 @@ a.popup_link:hover {
 				 {
 					 projectname = $("#select_project").find("option:selected").text(); 
 					 selectPlanByProName(projectname);
+					 clearTestStatusAndTime()
 				 }
 				 //根据项目名称获取所有的计划
 		     function selectPlanByProName(proname)
@@ -378,6 +387,7 @@ a.popup_link:hover {
 								   });
 		             }
                  });
+	
 </script>
 <script language="javascript" type="text/javascript">
 <!--
