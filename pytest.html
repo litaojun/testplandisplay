@@ -85,8 +85,8 @@ a.popup_link:hover {
 }
 #total_row  { font-weight: bold; }
 .statusTableOne  { color: #7B68EE;font-size: 5px; }
-.statusTableTwo  { color: #FF69B4;font-size: 10px; }
-.statusTableThree  { color: #DC143C;font-size: 15px; }
+.statusTableTwo  { color: #00CED1;font-size: 10px; }
+.statusTableThree  { color: red;font-size: 15px; }
 .passClass  { background-color: #6c6; }
 .failClass  { background-color: #c60; }
 .errorClass { background-color: #c00; }
@@ -99,7 +99,7 @@ a.popup_link:hover {
 .t1 {
 font-size: 20px;//字体大小
 line-height: 40px;//文本行高
-color: 	#DC143C;//文本颜色
+color: 		#1E90FF;//文本颜色
 bgcolor:#DC143C;
 margin: 6px;//边界
 padding: 6px;//填充（文本与边界的距离）
@@ -108,7 +108,7 @@ border-bottom-style: solid;//底部边框样式为实线
 border-bottom-color: #00008B;//底部边框颜色
 }
 .comment{
-   color: red;
+   color: #556B2F;
    font-size:15px;//字体大小
  }
  .commentTwo{
@@ -168,7 +168,8 @@ border-bottom-color: #00008B;//底部边框颜色
 				 $("#total_row").remove();
 				 $("#select_plan > option").remove();
 				 var i = 1;
-				 var sign = 0;
+				 var sign = 1;
+				 //定时查询用例执行状态 
 				 function timeTest()
 				 {
 				      //alert(i);
@@ -250,12 +251,14 @@ border-bottom-color: #00008B;//底部边框颜色
 					//alert("开始执行" + projectname + "项目的自动化测试用例，用例执行需要一段时间，最新的测试报告请稍后刷新页面");
 					requrl = ipStr + "/prop/runtestplan?projectname=" + projectname + "&startime=" + time2;
 					selectPlanByProName(projectname);
+					sign = 0;
 					 $.ajax({
 											type:"GET" ,  
 											url: requrl ,
 											dataType:"json" ,  
 											<!--global:false,-->   
 											success: function(data){
+												                        
 												                        alert(data);
 											                       }
 							     });
@@ -489,7 +492,7 @@ function showOutput(id, name) {
     <td class="statusTableOne">
         <p id="timePlan">-------</p>
     </td>
-    <td   class="statusTableTwo" class="t1">目前状态</td>
+    <td   class="statusTableTwo" >目前状态</td>
     <td class="statusTableThree">
          <p id= "statusPlan">----</p>
      </td>
