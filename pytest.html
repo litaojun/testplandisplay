@@ -97,16 +97,16 @@ a.popup_link:hover {
 .testcase   { margin-left: 2em; }
 
 .t1 {
-font-size: 20px;//字体大小
-line-height: 40px;//文本行高
-color: 		#1E90FF;//文本颜色
-bgcolor:#DC143C;
-margin: 6px;//边界
-padding: 6px;//填充（文本与边界的距离）
-border-bottom-width: 1px;//底部边框宽度
-border-bottom-style: solid;//底部边框样式为实线
-border-bottom-color: #00008B;//底部边框颜色
-}
+			font-size: 20px;//字体大小
+			line-height: 40px;//文本行高
+			color: 		#1E90FF;//文本颜色
+			bgcolor:#DC143C;
+			margin: 6px;//边界
+			padding: 6px;//填充（文本与边界的距离）
+			border-bottom-width: 1px;//底部边框宽度
+			border-bottom-style: solid;//底部边框样式为实线
+			border-bottom-color: #00008B;//底部边框颜色
+		}
 .comment{
    color: #556B2F;
    font-size:15px;//字体大小
@@ -139,6 +139,19 @@ border-bottom-color: #00008B;//底部边框颜色
 .login-button:hover { /* 鼠标移入按钮范围时改变颜色 */  
     background: #5599FF;  
 }  
+.searchclass 
+ {
+      width:960px;
+      min-height:80px;
+      border-right:1px solid #000;border-bottom:1px solid #000;
+      margin:auto;
+      
+ }
+  .searchclass  tr td
+ {
+       height:15px;
+       border-left:1px solid #000;border-top:1px solid #000
+ }
 /* -- ending ---------------------------------------------------------------------- */
 #ending {
 }
@@ -170,6 +183,9 @@ border-bottom-color: #00008B;//底部边框颜色
 				 $("#select_plan").prepend("<option value='' selected>请选择</option>") ;
 				 var i = 1;
 				 var sign = 1;
+				 var stattime;
+				 var runfentime = 0;
+				 var runmiaotime = 0;
 				 //定时查询用例执行状态 
 				 function timeTest()
 				 {
@@ -199,6 +215,15 @@ border-bottom-color: #00008B;//底部边框颜色
 															                        	    $("#statusPlan").html("自动化用例执行完成");
 															                        	    sign =1;
 															                        	    protime = starttime + "~" + data.endtime;
+															                        	    enttime = new Date(data.endtime);  
+															                        	    lstarttime = new Date(stattime);  
+															                        	    lentime = lstarttime - enttime;
+															                        	    lentime = lentime/1000;
+															                        	    runfentime = parseInt(lentime/60);
+															                        	    runmiaotime = lentime-runfentime*60;
+															                        	    $("#fentime").html(runfentime);
+															                        	    $("#miaotime").html(runmiaotime);
+															                        	    //alert("本次自动化用例执行时长为：" + runfentime +"分钟 "+ runmiaotime 	+ " 秒");
 															                        	    $("#timePlan").html(protime);
 															                        	    selectPlanByProName("steam亲子教育")
 															                        	 }
@@ -242,15 +267,18 @@ border-bottom-color: #00008B;//底部边框颜色
 			function autoTestFun()
 			{
 				  var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");  
+				  stattime = time2;
 				  time2 =time2.replace(' ','-');
 				  $("#timePlan").html(time2);
-				  $("#statusPlan").html("自动化用例执行中，请等待。。");
+				  $("#statusPlan").html("自动化用例执行中，请等待...");
 					projectname = $("#select_project").find("option:selected").text();  //获取select的选择的文本,获取工程名称
 					//projectname = $("#select_project").val();   //获取select的value值
 					//alert("开始执行" + projectname + "项目的自动化测试用例，用例执行需要一段时间，最新的测试报告请稍后刷新页面");
 					requrl = ipStr + "/prop/runtestplan?projectname=" + projectname + "&startime=" + time2;
 					selectPlanByProName(projectname);
 					sign = 0;
+					runfentime = 0;
+					runmiaotime = 0;
 					 $.ajax({
 											type:"GET" ,  
 											url: requrl ,
@@ -495,6 +523,15 @@ function showOutput(id, name) {
     <td class="statusTableThree">
          <p id= "statusPlan">----</p>
      </td>
+  </tr>
+ </table>
+ <table >  
+  <tr>
+     <td>本次自动化用例执行时长为：</td>
+     <td id="fentime">-</td>
+     <td>分</td>
+     <td id="miaotime">-</td>
+     <td>秒</td>
   </tr>
 </table> 
 
