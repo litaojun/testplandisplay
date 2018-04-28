@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-04-24 10:41:31
+Date: 2018-04-28 14:29:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `test_case_record` (
   PRIMARY KEY (`id`),
   KEY `plan_id` (`plan_id`),
   CONSTRAINT `plan_id` FOREIGN KEY (`plan_id`) REFERENCES `test_plan` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of test_case_record
@@ -47,8 +47,40 @@ CREATE TABLE `test_plan` (
   `description` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
   `id` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+
+
+-- ----------------------------
+-- Table structure for `test_run_config`
+-- ----------------------------
+DROP TABLE IF EXISTS `test_run_config`;
+CREATE TABLE `test_run_config` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `projectname` varchar(100) COLLATE utf8mb4_bin NOT NULL,
+  `runtype` int(2) NOT NULL,
+  `runcmd` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
--- Records of test_plan
+-- Records of test_run_config
+-- ----------------------------
+INSERT INTO `test_run_config` VALUES ('1', 'steamÇ××Ó½ÌÓý', '1', 'run.sh');
+
+-- ----------------------------
+-- Table structure for `test_run_process`
+-- ----------------------------
+DROP TABLE IF EXISTS `test_run_process`;
+CREATE TABLE `test_run_process` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `starttime` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL,
+  `status` int(2) DEFAULT NULL,
+  `endtime` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL,
+  `projectname` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- ----------------------------
+-- Records of test_run_process
 -- ----------------------------
