@@ -6,8 +6,8 @@ git clone http://github.opg.cn/opg-li-taojun/unittestExBaseb.git
 git clone http://github.opg.cn/opg-li-taojun/steamOmTest.git
 echo "export PYTHONPATH=$HOME/testhome/unittestExBaseb:$HOME/testhome/steamOmTest" >> $HOME/.bashrc
 source $HOME/.bashrc
-cd steamOmTest
-python steam/mediares/query/mediaresQueryTest.py aafff
+#cd steamOmTest
+#python steam/mediares/query/mediaresQueryTest.py aafff
 wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-7/v7.0.88/bin/apache-tomcat-7.0.88.zip
 unzip apache-tomcat-7.0.88.zip -d $HOME/testhome/
 cd $HOME/testhome/apache-tomcat-7.0.88/bin
